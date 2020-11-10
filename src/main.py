@@ -1,7 +1,7 @@
 import argparse
 import subprocess
 import os
-# import os.path as path
+
 
 XPR_VER_LINE_PREFIX = '<!-- Product Version: Vivado v'
 
@@ -12,9 +12,8 @@ def read(filePath):
     textFile.close()
     return out
 
-def get_vivado_ver_str(file_path, lines):
-    print(lines)
-    
+
+def get_vivado_ver_str(file_path, lines):    
     if file_path.endswith('.xpr'):
         
         for line in lines:
@@ -30,8 +29,6 @@ def get_env_var_name(vivado_ver_str):
 
 
 
-
-
 def main(file_path):
     lines = read(file_path)
     
@@ -43,22 +40,26 @@ def main(file_path):
     
     vivado_bat_path = os.environ[env_var_name]
     
+    # cd to dir with file_path so extra Vivado files are not generated in this dir
+    os.chdir(os.path.dirname(file_path))
+    
     cmd = '{} {}'.format(vivado_bat_path, file_path)
     print('Running cmd: ', cmd)
     subprocess.call(cmd, shell = True)
     
 
+
 if __name__ == '__main__':
     
-# parser = argparse.ArgumentParser()
-# parser.add_argument('-f', '--file_path')
-# args = parser.parse_args()
-# 
-# print(args.file_path)
-# 
-# main(args.file_path)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-f', '--file_path')
+    args = parser.parse_args()
+      
+    print(args.file_path)
+      
+    main(args.file_path)
 
-    main("C:\\PICs\\0243_pic\\projects\\viv_2018_3_test\\viv_2018_3_test.xpr")
+#     main("C:\\PICs\\0243_pic\\projects\\viv_2018_3_test\\viv_2018_3_test.xpr")
     
     
     
