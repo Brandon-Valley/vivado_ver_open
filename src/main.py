@@ -1,5 +1,6 @@
 import argparse
 import subprocess
+import os
 # import os.path as path
 
 XPR_VER_LINE_PREFIX = '<!-- Product Version: Vivado v'
@@ -38,7 +39,13 @@ def main(file_path):
     print('Vivado Version: ', vivado_ver_str)
     
     env_var_name = get_env_var_name(vivado_ver_str)
-    print('Enviornment Variable: ', env_var_name)
+    print('Environment Variable: ', env_var_name)
+    
+    vivado_bat_path = os.environ[env_var_name]
+    
+    cmd = '{} {}'.format(vivado_bat_path, file_path)
+    print('Running cmd: ', cmd)
+    subprocess.call(cmd, shell = True)
     
 
 if __name__ == '__main__':
