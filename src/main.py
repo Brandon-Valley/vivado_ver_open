@@ -1,5 +1,8 @@
 import argparse
 import subprocess
+# import os.path as path
+
+XPR_VER_LINE_PREFIX = '<!-- Product Version: Vivado v'
 
 
 def read(filePath):
@@ -8,8 +11,22 @@ def read(filePath):
     textFile.close()
     return out
 
-def get_vivado_ver_str(lines):
+def get_vivado_ver_str(file_path, lines):
     print(lines)
+    
+    if file_path.endswith('.xpr'):
+        
+        for line in lines:
+            if line.startswith(XPR_VER_LINE_PREFIX):
+                vivado_ver_str = line.split(XPR_VER_LINE_PREFIX)[1].split(' ')[0]
+                return vivado_ver_str
+        
+        
+        
+    else:
+        raise Exception("ERROR:  .xpr files only, cannot open:  " + file_path)
+    
+    
 
 
 
@@ -19,7 +36,8 @@ def get_vivado_ver_str(lines):
 def main(file_path):
     lines = read(file_path)
     
-    vivado_ver_str = get_vivado_ver_str(lines)
+    vivado_ver_str = get_vivado_ver_str(file_path, lines)
+    print('Vivado Version: ', vivado_ver_str)
     
 
 
@@ -34,3 +52,7 @@ if __name__ == '__main__':
 # main(args.file_path)
 
     main("C:\\PICs\\0243_pic\\projects\\viv_2018_3_test\\viv_2018_3_test.xpr")
+    
+    
+    
+    
