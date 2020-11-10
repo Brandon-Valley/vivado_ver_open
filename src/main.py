@@ -20,14 +20,12 @@ def get_vivado_ver_str(file_path, lines):
             if line.startswith(XPR_VER_LINE_PREFIX):
                 vivado_ver_str = line.split(XPR_VER_LINE_PREFIX)[1].split(' ')[0]
                 return vivado_ver_str
-        
-        
-        
     else:
         raise Exception("ERROR:  .xpr files only, cannot open:  " + file_path)
     
     
-
+def get_env_var_name(vivado_ver_str):
+    return 'VIVADO_BAT_PATH_' + vivado_ver_str.replace('.', '_')
 
 
 
@@ -39,7 +37,9 @@ def main(file_path):
     vivado_ver_str = get_vivado_ver_str(file_path, lines)
     print('Vivado Version: ', vivado_ver_str)
     
-
+    env_var_name = get_env_var_name(vivado_ver_str)
+    print('Enviornment Variable: ', env_var_name)
+    
 
 if __name__ == '__main__':
     
