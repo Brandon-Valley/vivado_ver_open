@@ -3,7 +3,7 @@ set file_to_open_path=%1
 
 set SCRIPT_PARENT_DIR=%~dp0
 
-python %SCRIPT_PARENT_DIR%/src/main.py %file_to_open_path%
+python %SCRIPT_PARENT_DIR%/src/main.py -f %file_to_open_path%
 
 
 
