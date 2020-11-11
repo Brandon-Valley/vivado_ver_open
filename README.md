@@ -2,6 +2,8 @@
 
 After completing the setup below, double clicking a .xpr file will always open the project in the Vivado version it was created from.
 
+This repository uses the [Semantic Versioning Scheme](https://semver.org/).
+
 ## Required Software
 
 ---
