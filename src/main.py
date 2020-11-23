@@ -44,7 +44,7 @@ def main(file_path):
     os.chdir(os.path.dirname(file_path))
     
     cmd = '{} {}'.format(vivado_bat_path, file_path)
-    print('Running cmd: ', cmd)
+    print('\nRunning cmd: ', cmd, '...')
     subprocess.call(cmd, shell = True)
     
 
