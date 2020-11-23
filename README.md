@@ -4,6 +4,8 @@ After completing the setup below, double clicking a .xpr file will always open t
 
 This repository uses the [Semantic Versioning Scheme](https://semver.org/).
 
+For release information, please see the [CHANGELOG](CHANGELOG.md).
+
 ## Required Software
 
 ---
